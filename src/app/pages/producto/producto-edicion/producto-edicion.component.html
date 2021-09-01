@@ -1,0 +1,36 @@
+<form class="example-container" [formGroup]="form" (ngSubmit)="operar()" #espForm="ngForm">
+
+  <div [hidden]="true">
+      <mat-form-field class="example-full-width">
+          <input matInput placeholder="ID" required formControlName="id">
+      </mat-form-field>
+  </div>
+
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="Producto" required formControlName="productName">
+  </mat-form-field>
+
+	<mat-form-field appearance="outline">
+		<mat-label>Categoria</mat-label>
+		<mat-select formControlName="categoryId">
+			<mat-option *ngFor="let item of listCategories" [value]="item.categoryId">{{ item.categoryName }} </mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field appearance="outline">
+		<mat-label>Precio Unitario</mat-label>
+		<input matInput name="precioUnitario" formControlName="productPrice" numeric type="number" />
+		<mat-icon matSuffix class="material-icons-outlined">sell</mat-icon>
+	</mat-form-field>
+
+  <mat-checkbox color="primary" formControlName="productEnabled">Habilitado</mat-checkbox>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="espForm.invalid">
+      <mat-icon>done</mat-icon>
+      <span>Aceptar</span>
+  </button>
+  <button mat-raised-button color="accent" routerLink='/product' type="button">
+      <mat-icon>close</mat-icon>
+      <span>Cancelar</span>
+  </button>
+</form>
